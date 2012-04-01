@@ -1,0 +1,6 @@
+*.*~
+.*
+autom4te.cache
+*.bak
+Makefile
+Debug

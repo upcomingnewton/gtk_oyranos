@@ -1,6 +1,0 @@
-typedef struct _Data Data;
-struct _Data
-{
-	GtkWidget *pref_devicetree;
-};
-
