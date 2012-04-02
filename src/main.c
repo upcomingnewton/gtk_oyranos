@@ -78,7 +78,9 @@ create_window (void)
 	window = GTK_WIDGET (gtk_builder_get_object (builder, "dialogMain"));
 	g_print("\n window = %u ",window);
 	g_print("\n window-2 = %u ",GTK_WIDGET (gtk_builder_get_object (builder, "scrolledwindow_PrefLeftUpper")));
-	scroll_window = GTK_WIDGET (gtk_builder_get_object (builder, "scrolledwindow_PrefLeftUpper"));
+	//scroll_window = GTK_WIDGET (gtk_builder_get_object (builder, "scrolledwindow_PrefLeftUpper"));
+	scroll_window = GTK_WIDGET (gtk_builder_get_object (builder, "treeview_pref_devices"));
+	
 	g_print("window 3 = %u, %u",scroll_window,0);
 	gtk_builder_connect_signals (builder, scroll_window);
 	g_object_unref (builder);

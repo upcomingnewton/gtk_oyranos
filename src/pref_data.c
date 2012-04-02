@@ -16,8 +16,9 @@ GSList * populate_data()
 		//g_print("\n ** %s",buf_type);
 		DeviceData *data;
 		data = g_new0(DeviceData,1);
-		data->device_type = buf_type;
-		data->device_name = "NULL";
+		data->device_type = g_string_new(buf_type);
+		data->device_name = g_string_new("NULL");
+		g_print("\n ** %s **",data->device_type->str);
 		list = g_slist_append(list,data);
 		//g_free(data);
 
@@ -27,8 +28,8 @@ GSList * populate_data()
 			//g_print("\n\t ** %s",buf_name);
 			DeviceData *data;
 			data = g_new0(DeviceData,1);
-			data->device_type = buf_type;
-			data->device_name = buf_name;
+		data->device_type = g_string_new(buf_type);
+		data->device_name = g_string_new(buf_name);
 			list = g_slist_append(list,data);
 			//g_free(data);	
 		}

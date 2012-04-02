@@ -46,12 +46,12 @@ void on_btn_DeviceListRefresh_clicked(GtkWidget *widget, GtkWidget* container)
 {
 	
 	g_print("you have pressed refresh button\n");
-	GtkWidget * view = CreateView();
-	gtk_widget_show(view);
-	gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (container), view);
+	//GtkWidget * view = CreateView();
+	UpdateView(container);
+	//gtk_widget_show(view);
+	//gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (container), view);
 	g_print("\n i am executed");
 
 }
-
 
 
