@@ -89,7 +89,11 @@ void UpdateView(GtkWidget *view)
 	GtkCellRenderer *renderer;
 	GtkTreeModel *model;
 	//GtkWidget *view;
+	GtkTreeSelection *select;
 
+	select = gtk_tree_view_get_selection (GTK_TREE_VIEW(view));
+	g_signal_connect(select, "changed", G_CALLBACK(on_treeview_pref_devices_selection_change), "NULL");
+	
 	//view = gtk_tree_view_new ();
 	
 	col = gtk_tree_view_column_new();
@@ -105,4 +109,36 @@ void UpdateView(GtkWidget *view)
 	g_object_unref(model);
 
 	//return view;
+}
+
+
+G_MODULE_EXPORT
+void on_btn_DeviceListRefresh_clicked(GtkWidget *widget, CallbackData* data)
+{
+	
+	g_print("you have pressed refresh button\n");
+	//GtkWidget * view = CreateView();
+	UpdateView(data->treeview_pref_devices);
+	//gtk_widget_show(view);
+	//gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (container), view);
+	g_print("\n i am executed");
+
+}
+
+
+G_MODULE_EXPORT 
+void on_treeview_pref_devices_selection_change(GtkWidget *widget,  CallbackData* data)
+{
+	GtkTreeIter iter;
+  GtkTreeModel *model;
+  gchar *value;
+
+
+  if (gtk_tree_selection_get_selected(
+      GTK_TREE_SELECTION(widget), &model, &iter)) {
+
+    gtk_tree_model_get(model, &iter, COLUMN, &value,  -1);
+    g_print("\n selected value is : %s",value);
+    g_free(value);
+  }
 }

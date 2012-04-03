@@ -52,7 +52,10 @@
 #endif
 
 
-
+#ifndef HAVE_OY_CONFIG_H
+#define HAVE_OY_CONFIG_H
+#include "oy_config.h"
+#endif
 #include "callbacks.h"
 
 /* For testing propose use the local (not installed) ui file */
@@ -63,7 +66,7 @@ GtkWidget*
 create_window (void)
 {
 	GtkWidget *window;
-	GtkWidget *scroll_window;
+	CallbackData * data;
 	GtkBuilder *builder;
 	GError* error = NULL;
 	builder = gtk_builder_new ();
@@ -72,17 +75,21 @@ create_window (void)
 		g_warning ("Couldn't load builder file: %s", error->message);
 		g_error_free (error);
 	}
-
+	data = g_new0(CallbackData,1);
+	if( data == NULL )
+	{
+		g_warning("error allocating memory to CallbackData\n");
+	}
 	/* This is important */
 	
 	window = GTK_WIDGET (gtk_builder_get_object (builder, "dialogMain"));
-	g_print("\n window = %u ",window);
-	g_print("\n window-2 = %u ",GTK_WIDGET (gtk_builder_get_object (builder, "scrolledwindow_PrefLeftUpper")));
+	//g_print("\n window = %u ",window);
+	//g_print("\n window-2 = %u ",GTK_WIDGET (gtk_builder_get_object (builder, "scrolledwindow_PrefLeftUpper")));
 	//scroll_window = GTK_WIDGET (gtk_builder_get_object (builder, "scrolledwindow_PrefLeftUpper"));
-	scroll_window = GTK_WIDGET (gtk_builder_get_object (builder, "treeview_pref_devices"));
+	data->treeview_pref_devices = GTK_WIDGET (gtk_builder_get_object (builder, "treeview_pref_devices"));
 	
-	g_print("window 3 = %u, %u",scroll_window,0);
-	gtk_builder_connect_signals (builder, scroll_window);
+	//g_print("window 3 = %u, %u",scroll_window,0);
+	gtk_builder_connect_signals (builder, data);
 	g_object_unref (builder);
 	
 	return window;

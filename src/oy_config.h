@@ -1,7 +1,7 @@
-
+#include<gtk/gtk.h>
 struct _Data
 {
-	GtkWidget *pref_devicetree;
+	GtkWidget *treeview_pref_devices;
 };
 
-typedef struct _Data Data;
+typedef struct _Data CallbackData;

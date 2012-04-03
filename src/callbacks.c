@@ -24,10 +24,13 @@
 #endif
 
 #include "callbacks.h"
-
+#ifndef HAVE_OY_CONFIG_H
+#define HAVE_OY_CONFIG_H
+#include "oy_config.h"
+#endif
 
 G_MODULE_EXPORT void
-destroy (GtkWidget *widget, GtkWidget* container)
+destroy (GtkWidget *widget, CallbackData* data)
 {
 	gtk_main_quit ();
 }
@@ -35,23 +38,12 @@ destroy (GtkWidget *widget, GtkWidget* container)
 
 
 G_MODULE_EXPORT
-gboolean on_btnClose_clicked(GtkWidget *widget,GtkWidget* container)
+gboolean on_btnClose_clicked(GtkWidget *widget,CallbackData* data)
 {
 	gtk_main_quit ();
 	return FALSE;
 }
 
-G_MODULE_EXPORT
-void on_btn_DeviceListRefresh_clicked(GtkWidget *widget, GtkWidget* container)
-{
-	
-	g_print("you have pressed refresh button\n");
-	//GtkWidget * view = CreateView();
-	UpdateView(container);
-	//gtk_widget_show(view);
-	//gtk_scrolled_window_add_with_viewport (GTK_SCROLLED_WINDOW (container), view);
-	g_print("\n i am executed");
 
-}
 
 

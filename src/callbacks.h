@@ -17,8 +17,10 @@
  * with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <gtk/gtk.h>
+#ifndef HAVE_OY_CONFIG_H
+#define HAVE_OY_CONFIG_H
+#include "oy_config.h"
+#endif
 
-G_MODULE_EXPORT void destroy (GtkWidget *widget, GtkWidget* container);
-G_MODULE_EXPORT gboolean on_btnClose_clicked(GtkWidget *widget,GtkWidget* container);
-G_MODULE_EXPORT void on_btn_DeviceListRefresh_clicked(GtkWidget *widget,  GtkWidget* container);
+G_MODULE_EXPORT void destroy (GtkWidget *widget, CallbackData* data);
+G_MODULE_EXPORT gboolean on_btnClose_clicked(GtkWidget *widget,CallbackData* data);
